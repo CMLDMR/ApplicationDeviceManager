@@ -2,7 +2,7 @@ QT       += core gui
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
-CONFIG += c++11
+CONFIG += c++17
 
 # You can make your code fail to compile if it uses deprecated APIs.
 # In order to do so, uncomment the following line.
@@ -13,7 +13,8 @@ SOURCES += \
     mainwindow.cpp
 
 HEADERS += \
-    mainwindow.h
+    mainwindow.h \
+    mongoheaders.h
 
 FORMS += \
     mainwindow.ui
@@ -22,3 +23,25 @@ FORMS += \
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
+
+
+LIBS     += -lws2_32
+LIBS     += -liphlpapi
+
+
+win32: LIBS += -LC:/Mongo/msvc2017x64/lib/ -lbsoncxx
+
+INCLUDEPATH += C:/Mongo/msvc2017x64/include/bsoncxx/v_noabi
+DEPENDPATH += C:/Mongo/msvc2017x64/include/bsoncxx/v_noabi
+
+
+
+win32: LIBS += -LC:/Mongo/msvc2017x64/lib/ -lmongocxx
+
+INCLUDEPATH += C:/Mongo/msvc2017x64/include/mongocxx/v_noabi
+DEPENDPATH += C:/Mongo/msvc2017x64/include/mongocxx/v_noabi
+
+
+
+INCLUDEPATH += C:/boost/boost
+DEPENDPATH += C:/boost/boost
